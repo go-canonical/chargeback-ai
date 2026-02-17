@@ -1,10 +1,20 @@
 {
-  "id": "go-canonical/chargeback-ai",
   "name": "chargeback-ai",
   "description": "Universal chargeback and payment dispute response assistant for merchants",
-  "author": "Canonical",
-  "repository": "https://github.com/go-canonical/chargeback-ai",
-  "license": "MIT",
-  "tags": ["chargeback", "disputes", "payments", "merchant", "visa", "mastercard", "amex", "discover", "ach", "stripe", "shopify"],
-  "categories": ["finance", "e-commerce"]
+  "owner": {
+    "name": "Canonical",
+    "email": "hello@usecanonical.com"
+  },
+  "plugins": [
+    {
+      "name": "chargeback-ai",
+      "description": "Universal chargeback and payment dispute response assistant. Look up reason codes, decide whether to fight or accept disputes, and generate compelling rebuttal letters with evidence strategies. Works with any payment processor.",
+      "version": "1.0.0",
+      "source": "./",
+      "author": {
+        "name": "Canonical",
+        "email": "hello@usecanonical.com"
+      }
+    }
+  ]
 }
