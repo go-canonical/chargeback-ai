@@ -41,7 +41,7 @@ Generate a complete dispute response package — rebuttal letter, evidence check
 | Visa | 10.1–13.9 (24 codes) | 30 days |
 | Mastercard | 4807–4999 (23 codes) | 45 days |
 | American Express | A, C, F, P, R, FR, M series (23 codes) | 20 days |
-| Discover | AA, AT, UA, etc. (18 codes) | 30 days |
+| Discover | AA, AT, UA, etc. (22 codes) | 30 days |
 | ACH Returns | R01–R33 (25 codes) | Varies |
 
 ## Optional Integrations
@@ -50,8 +50,9 @@ If you have Stripe MCP or Shopify MCP connected, chargeback-ai will automaticall
 
 ## Installation
 
-```bash
-/plugin install --source github go-canonical/chargeback-ai
+```
+/plugin marketplace add go-canonical/chargeback-ai
+/plugin install chargeback-ai@go-canonical-chargeback-ai
 ```
 
 ## License
