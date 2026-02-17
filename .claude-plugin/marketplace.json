@@ -3,7 +3,7 @@
   "description": "Universal chargeback and payment dispute response assistant for merchants",
   "owner": {
     "name": "Canonical",
-    "email": "hello@usecanonical.com"
+    "email": "tahin@gocanonical.com"
   },
   "plugins": [
     {
@@ -13,7 +13,7 @@
       "source": "./",
       "author": {
         "name": "Canonical",
-        "email": "hello@usecanonical.com"
+        "email": "tahin@gocanonical.com"
       }
     }
   ]
