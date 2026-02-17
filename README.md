@@ -59,6 +59,10 @@ Requires [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Run thes
 
 After installing, the three skills above are available in all your Claude Code sessions. Just type `/chargeback-ai:lookup`, `/chargeback-ai:analyze`, or `/chargeback-ai:respond` followed by your dispute details.
 
+## Disclaimer
+
+This plugin is for informational purposes only and does not constitute legal, financial, or professional advice. Chargeback rules and evidence requirements change frequently. Always verify current requirements with your payment processor or acquirer before submitting a dispute response. You are responsible for the accuracy of any information submitted.
+
 ## License
 
 MIT

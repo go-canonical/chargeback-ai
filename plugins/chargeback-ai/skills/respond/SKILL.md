@@ -119,3 +119,9 @@ Before asking the user for dispute details, check if any of these tools are avai
 If these tools are available, say: "I see you have [Stripe/Shopify] connected — want me to pull the dispute details directly, or would you prefer to paste them?"
 
 If not available, proceed with manual input. Do not mention the integrations if the tools are not present.
+
+## Disclaimer
+
+Always include this at the end of every response package:
+
+> **Disclaimer:** This dispute response was generated as a starting point and does not constitute legal, financial, or professional advice. Review all content carefully before submission — you are responsible for the accuracy of any information submitted to your payment processor. Chargeback rules and evidence requirements change frequently. Consult your acquirer or a chargeback management professional for case-specific guidance.
