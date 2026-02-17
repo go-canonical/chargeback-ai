@@ -1,0 +1,10 @@
+{
+  "id": "go-canonical/chargeback-ai",
+  "name": "chargeback-ai",
+  "description": "Universal chargeback and payment dispute response assistant for merchants",
+  "author": "Canonical",
+  "repository": "https://github.com/go-canonical/chargeback-ai",
+  "license": "MIT",
+  "tags": ["chargeback", "disputes", "payments", "merchant", "visa", "mastercard", "amex", "discover", "ach", "stripe", "shopify"],
+  "categories": ["finance", "e-commerce"]
+}
