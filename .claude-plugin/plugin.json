@@ -3,7 +3,7 @@
   "description": "Universal chargeback and payment dispute response assistant. Look up reason codes, decide whether to fight or accept disputes, and generate compelling rebuttal letters with evidence strategies. Works with any payment processor.",
   "version": "1.0.0",
   "author": {
-    "name": "Canonical",
+    "name": "Tahin",
     "email": "tahin@gocanonical.com"
   },
   "homepage": "https://github.com/go-canonical/chargeback-ai",
