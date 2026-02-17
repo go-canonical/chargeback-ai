@@ -1,4 +1,5 @@
 {
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "chargeback-ai",
   "description": "Universal chargeback and payment dispute response assistant for merchants",
   "owner": {
@@ -10,7 +11,7 @@
       "name": "chargeback-ai",
       "description": "Universal chargeback and payment dispute response assistant. Look up reason codes, decide whether to fight or accept disputes, and generate compelling rebuttal letters with evidence strategies. Works with any payment processor.",
       "version": "1.0.0",
-      "source": "./",
+      "source": "./plugins/chargeback-ai",
       "author": {
         "name": "Tahin",
         "email": "tahin@gocanonical.com"
