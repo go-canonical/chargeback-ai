@@ -1,22 +1,13 @@
 {
   "name": "chargeback-ai",
+  "description": "Universal chargeback and payment dispute response assistant. Look up reason codes, decide whether to fight or accept disputes, and generate compelling rebuttal letters with evidence strategies. Works with any payment processor.",
   "version": "1.0.0",
-  "description": "Universal chargeback and payment dispute response assistant. Look up reason codes, decide whether to fight or accept disputes, and generate compelling rebuttal letters with evidence strategies. Works with any payment processor. Built by Canonical.",
-  "skills": [
-    {
-      "name": "lookup",
-      "path": "skills/lookup/SKILL.md",
-      "description": "Look up any chargeback reason code or dispute type across Visa, Mastercard, Amex, Discover, and ACH"
-    },
-    {
-      "name": "analyze",
-      "path": "skills/analyze/SKILL.md",
-      "description": "Decide whether to fight or accept a chargeback dispute based on your evidence and situation"
-    },
-    {
-      "name": "respond",
-      "path": "skills/respond/SKILL.md",
-      "description": "Generate a complete dispute response package with rebuttal letter, evidence checklist, and submission guide"
-    }
-  ]
+  "author": {
+    "name": "Tahin",
+    "email": "tahin@gocanonical.com"
+  },
+  "homepage": "https://github.com/go-canonical/chargeback-ai",
+  "repository": "https://github.com/go-canonical/chargeback-ai",
+  "license": "MIT",
+  "keywords": ["chargeback", "disputes", "payments", "merchant", "visa", "mastercard", "amex", "discover", "ach", "stripe", "shopify"]
 }
