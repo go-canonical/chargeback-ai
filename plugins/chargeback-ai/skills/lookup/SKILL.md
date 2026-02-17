@@ -76,3 +76,9 @@ When presenting a reason code lookup, use this structure:
 **Common Mistakes to Avoid:**
 - [mistake]
 ```
+
+## Disclaimer
+
+Always include this at the end of every response:
+
+> **Disclaimer:** This information is for general reference only and does not constitute legal, financial, or professional advice. Chargeback rules and evidence requirements change frequently. Always verify current requirements with your payment processor or acquirer before submitting a dispute response.

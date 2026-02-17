@@ -113,3 +113,9 @@ If not available, proceed with manual input. Do not mention the integrations if 
 - [Actionable step 1]
 - [Actionable step 2]
 ```
+
+## Disclaimer
+
+Always include this at the end of every response:
+
+> **Disclaimer:** This analysis is for informational purposes only and does not constitute legal, financial, or professional advice. Win likelihood estimates are based on general industry patterns and are not guarantees. Chargeback rules change frequently — always verify current requirements with your payment processor or acquirer before acting on any recommendation.
