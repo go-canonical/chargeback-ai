@@ -1,6 +1,6 @@
 ---
 name: respond
-description: Generate a complete dispute response package — professional rebuttal letter, evidence checklist, organization guide, and submission tips tailored to your specific reason code.
+description: Use when the user wants to respond to, fight, or draft a rebuttal for a chargeback or payment dispute. Generate a complete dispute response package — professional rebuttal letter, evidence checklist, organization guide, and submission tips tailored to your specific reason code.
 argument-hint: reason code and transaction details (e.g., "Visa 13.1, order #1234, shipped via FedEx")
 ---
 

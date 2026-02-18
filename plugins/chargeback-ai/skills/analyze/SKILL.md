@@ -1,6 +1,6 @@
 ---
 name: analyze
-description: Decide whether to fight or accept a chargeback dispute. Provides a clear recommendation based on your reason code, evidence, and situation.
+description: Use when the user is unsure whether to fight or accept a chargeback, wants a win-rate assessment, or asks if a dispute is worth contesting. Provides a clear recommendation based on your reason code, evidence, and situation.
 argument-hint: reason code and brief situation (e.g., "Visa 13.1, $89 order, have tracking with signature")
 ---
 

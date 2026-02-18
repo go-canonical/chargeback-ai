@@ -1,6 +1,6 @@
 ---
 name: lookup
-description: Look up any chargeback reason code or dispute type across Visa, Mastercard, Amex, Discover, and ACH. Get evidence requirements, deadlines, and strategy tips.
+description: Use when the user asks about ANY chargeback, dispute, reason code, payment dispute, or mentions Visa/Mastercard/Amex/Discover/ACH codes — even casually. Look up any chargeback reason code or dispute type. Get evidence requirements, deadlines, and strategy tips.
 argument-hint: reason code or keyword (e.g., "Visa 13.1", "fraud", "not received", "MC 4853")
 ---
 
