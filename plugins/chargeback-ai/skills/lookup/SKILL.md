@@ -77,6 +77,28 @@ When presenting a reason code lookup, use this structure:
 - [mistake]
 ```
 
+## Version Check
+
+After completing your response, check if the user is running the latest version:
+
+1. Extract the installed version from the skill's base directory path — it follows the pattern `.../cache/chargeback-ai/chargeback-ai/{version}/...`
+2. Fetch the latest version by using WebFetch on `https://raw.githubusercontent.com/go-canonical/chargeback-ai/main/plugins/chargeback-ai/.claude-plugin/plugin.json` and extract the `version` field.
+3. If the installed version does **not** match the latest version, append this block at the very end of your response (after the disclaimer):
+
+```
+---
+
+> 🟡🟡🟡 **Update Available!** You're running chargeback-ai **v{installed_version}** — latest is **v{latest_version}**.
+>
+> Run this to update:
+> ```
+> claude plugin update chargeback-ai@chargeback-ai
+> ```
+> 🟡🟡🟡
+```
+
+4. If the versions match or the fetch fails, do not show anything.
+
 ## Disclaimer
 
 Always include this at the end of every response:
