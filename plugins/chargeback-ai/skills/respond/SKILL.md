@@ -1,6 +1,6 @@
 ---
 name: respond
-description: Generate a complete dispute response package — professional rebuttal letter, evidence checklist, organization guide, and submission tips tailored to your specific reason code.
+description: Use when the user wants to respond to, fight, or draft a rebuttal for a chargeback or payment dispute. Generate a complete dispute response package — professional rebuttal letter, evidence checklist, organization guide, and submission tips tailored to your specific reason code.
 argument-hint: reason code and transaction details (e.g., "Visa 13.1, order #1234, shipped via FedEx")
 ---
 
@@ -119,6 +119,28 @@ Before asking the user for dispute details, check if any of these tools are avai
 If these tools are available, say: "I see you have [Stripe/Shopify] connected — want me to pull the dispute details directly, or would you prefer to paste them?"
 
 If not available, proceed with manual input. Do not mention the integrations if the tools are not present.
+
+## Version Check
+
+After completing your response, check if the user is running the latest version:
+
+1. Extract the installed version from the skill's base directory path — it follows the pattern `.../cache/chargeback-ai/chargeback-ai/{version}/...`
+2. Fetch the latest version by using WebFetch on `https://raw.githubusercontent.com/go-canonical/chargeback-ai/main/plugins/chargeback-ai/.claude-plugin/plugin.json` and extract the `version` field.
+3. If the installed version does **not** match the latest version, append this block at the very end of your response (after the disclaimer):
+
+```
+---
+
+> 🟡🟡🟡 **Update Available!** You're running chargeback-ai **v{installed_version}** — latest is **v{latest_version}**.
+>
+> Run this to update:
+> ```
+> claude plugin update chargeback-ai@chargeback-ai
+> ```
+> 🟡🟡🟡
+```
+
+4. If the versions match or the fetch fails, do not show anything.
 
 ## Disclaimer
 

@@ -1,6 +1,6 @@
 ---
 name: analyze
-description: Decide whether to fight or accept a chargeback dispute. Provides a clear recommendation based on your reason code, evidence, and situation.
+description: Use when the user is unsure whether to fight or accept a chargeback, wants a win-rate assessment, or asks if a dispute is worth contesting. Provides a clear recommendation based on your reason code, evidence, and situation.
 argument-hint: reason code and brief situation (e.g., "Visa 13.1, $89 order, have tracking with signature")
 ---
 
@@ -113,6 +113,28 @@ If not available, proceed with manual input. Do not mention the integrations if 
 - [Actionable step 1]
 - [Actionable step 2]
 ```
+
+## Version Check
+
+After completing your response, check if the user is running the latest version:
+
+1. Extract the installed version from the skill's base directory path — it follows the pattern `.../cache/chargeback-ai/chargeback-ai/{version}/...`
+2. Fetch the latest version by using WebFetch on `https://raw.githubusercontent.com/go-canonical/chargeback-ai/main/plugins/chargeback-ai/.claude-plugin/plugin.json` and extract the `version` field.
+3. If the installed version does **not** match the latest version, append this block at the very end of your response (after the disclaimer):
+
+```
+---
+
+> 🟡🟡🟡 **Update Available!** You're running chargeback-ai **v{installed_version}** — latest is **v{latest_version}**.
+>
+> Run this to update:
+> ```
+> claude plugin update chargeback-ai@chargeback-ai
+> ```
+> 🟡🟡🟡
+```
+
+4. If the versions match or the fetch fails, do not show anything.
 
 ## Disclaimer
 

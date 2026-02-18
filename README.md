@@ -13,11 +13,28 @@ Works with **any payment processor** — Stripe, Shopify, Adyen, Braintree, Squa
 /plugin install chargeback-ai@chargeback-ai
 ```
 
-Restart Claude Code after installing. That's it — three new skills are now available in every session.
+Restart Claude Code after installing. That's it — four skills are now available in every session.
+
+> **Note:** For some users, plugin skills won't appear when typing `/` in the autocomplete menu. Type the full command instead. Start with `/chargeback-ai:help` to see all available commands.
+
+To check for updates:
+```
+claude plugin update chargeback-ai@chargeback-ai
+```
 
 ---
 
 ## Skills
+
+### `/chargeback-ai:help` — Getting Started
+
+See all available commands with examples.
+
+```
+/chargeback-ai:help
+```
+
+---
 
 ### `/chargeback-ai:lookup` — Reason Code Reference
 
@@ -192,6 +209,7 @@ If you have **Stripe MCP** or **Shopify MCP** connected to Claude Code, chargeba
 
 | Scenario | Skill |
 |----------|-------|
+| "What commands are available?" | `/chargeback-ai:help` |
 | "What does reason code 13.1 mean?" | `/chargeback-ai:lookup Visa 13.1` |
 | "I got a chargeback — should I fight it?" | `/chargeback-ai:analyze` + your details |
 | "I need to write a dispute response" | `/chargeback-ai:respond` + your details |
