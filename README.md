@@ -17,10 +17,11 @@ Restart Claude Code after installing. That's it — four skills are now availabl
 
 > **Note:** For some users, plugin skills won't appear when typing `/` in the autocomplete menu. Type the full command instead. Start with `/chargeback-ai:help` to see all available commands.
 
-To check for updates:
+To check for updates, run this in your terminal (not inside Claude Code):
 ```
-claude plugin update chargeback-ai@chargeback-ai
+claude plugin update chargeback-ai@chargeback-ai --scope user
 ```
+If that doesn't work, try `--scope project` or `--scope local` instead — the right one depends on how you originally installed the plugin.
 
 ---
 

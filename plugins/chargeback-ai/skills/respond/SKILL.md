@@ -133,10 +133,11 @@ After completing your response, check if the user is running the latest version:
 
 > 🟡🟡🟡 **Update Available!** You're running chargeback-ai **v{installed_version}** — latest is **v{latest_version}**.
 >
-> Run this to update:
+> Run this in your terminal to update:
 > ```
-> claude plugin update chargeback-ai@chargeback-ai
+> claude plugin update chargeback-ai@chargeback-ai --scope user
 > ```
+> If that doesn't work, try `--scope project` or `--scope local` instead.
 > 🟡🟡🟡
 ```
 
