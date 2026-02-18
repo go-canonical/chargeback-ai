@@ -15,7 +15,7 @@ Works with **any payment processor** — Stripe, Shopify, Adyen, Braintree, Squa
 
 Restart Claude Code after installing. That's it — four skills are now available in every session.
 
-> **Note:** Due to a known Claude Code bug, plugin skills won't appear when typing `/` in the autocomplete menu. Type the full command instead. Start with `/chargeback-ai:help` to see all available commands.
+> **Note:** For some users, plugin skills won't appear when typing `/` in the autocomplete menu. Type the full command instead. Start with `/chargeback-ai:help` to see all available commands.
 
 To check for updates:
 ```
