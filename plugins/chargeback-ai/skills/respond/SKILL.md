@@ -109,6 +109,56 @@ Network-specific tips for submitting the response:
 - Contact the customer directly for alternative payment
 - For unauthorized returns (R05, R07, R10, R29): maintain authorization records for compliance
 
+## Section 5: PDF Generation
+
+After generating the complete response package in chat (all four sections above), ask the user:
+
+**"Want me to generate a PDF you can download? You'll get two options: a clean rebuttal letter ready to submit to your processor, and a full working copy with the evidence checklist and notes for your records."**
+
+If the user says yes, follow these steps:
+
+### Step 1: Read the template
+
+Read the HTML template from `templates/response-letter.html` relative to this skill's base directory. The base directory follows the pattern `.../cache/chargeback-ai/chargeback-ai/{version}/`. The template is at `{base}/templates/response-letter.html`.
+
+### Step 2: Fill in the template
+
+Replace all `{{PLACEHOLDER}}` tokens with the actual dispute content:
+
+| Placeholder | Value |
+|-------------|-------|
+| `{{CASE_NUMBER}}` | Dispute case number (or "N/A" if unknown) |
+| `{{NETWORK}}` | Payment network (Visa, Mastercard, etc.) |
+| `{{TRANSACTION_DATE}}` | Transaction date |
+| `{{REASON_CODE}}` | Full reason code with description (e.g., "13.1 — Merchandise/Services Not Received") |
+| `{{AMOUNT}}` | Dispute amount |
+| `{{DATE_PREPARED}}` | Today's date |
+| `{{REBUTTAL_LETTER}}` | The rebuttal letter content — convert to HTML paragraphs (`<p>` tags). Use `<strong>` for exhibit references. |
+| `{{EVIDENCE_TABLE}}` | The evidence checklist — render as an HTML `<table>` with class `evidence-table`. Use classes `status-have`, `status-missing`, or `status-partial` on status cells. |
+| `{{ORGANIZATION_GUIDE}}` | The organization guide — convert to HTML with `<ol>`, `<ul>`, `<li>`, `<h3>` tags as appropriate. |
+| `{{SUBMISSION_NOTES}}` | The submission notes for the relevant network only — convert to HTML with `<ul>`, `<li>`, `<strong>` tags. |
+
+### Step 3: Write the HTML file
+
+Write the filled HTML to the user's current working directory:
+`./chargeback-response-{case_number_or_date}.html`
+
+Use a sanitized version of the case number for the filename (replace spaces/special chars with dashes). If no case number, use today's date as `YYYY-MM-DD`.
+
+### Step 4: Open in browser
+
+Open the HTML file in the user's default browser:
+- **macOS:** `open "{absolute_path_to_html}"`
+- **Linux:** `xdg-open "{absolute_path_to_html}"`
+- **Windows:** `start "" "{absolute_path_to_html}"`
+
+Tell the user: "I've opened your dispute response in the browser. You'll see two download buttons at the top:
+
+- **Download Rebuttal Letter** — just the clean rebuttal letter with case details. This is what you submit to your processor or paste into their form.
+- **Download Full Working Copy** — the complete package including evidence checklist, organization guide, and submission notes. Keep this for your records.
+
+Click either button and the PDF downloads directly to your computer."
+
 ## Optional Integrations
 
 Before asking the user for dispute details, check if any of these tools are available:

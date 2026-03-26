@@ -46,10 +46,24 @@ Your chargeback and payment dispute assistant. Here's what I can do:
 
 Visa · Mastercard · Amex · Discover · ACH
 
+### How to Give Me Your Dispute Info
+
+You have several ways to share dispute details with me:
+
+| Method | How | Example |
+|--------|-----|---------|
+| **Type it** | Just describe the dispute in chat | `Visa 13.1, order #1234, shipped with tracking` |
+| **`@` a file** | Type `@` and pick a file from your computer | `@disputes.csv` or `@screenshot.png` |
+| **Paste a screenshot** | Drag or paste an image into the chat | Screenshot of Stripe dashboard, dispute portal, etc. |
+| **Stripe/Shopify MCP** | If connected, I pull details by ID | `dispute dp_XXXXXXXXXXXXX` |
+
+You do **not** need Stripe or Shopify API access — everything works with typed details, files, or screenshots.
+
 ### Tips
 
 - You can also just ask me about chargebacks naturally — e.g., "what do I do about a fraud dispute on Visa?"
-- If you have **Stripe** or **Shopify** MCP tools connected, I can pull dispute details directly from your account.
+- Use `@` to point me at CSV exports, Excel files, screenshots, PDFs, or rebuttal templates — I can read them all
+- If you have **Stripe** or **Shopify** MCP tools connected, I can pull dispute details directly from your account
 
 ---
 
