@@ -516,10 +516,36 @@
     var spinnerIcon = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:14px;height:14px;animation:spin 1s linear infinite"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182" /></svg>';
     var checkIcon = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:14px;height:14px"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>';
 
+    var isGenerating = false;
+
+    function restoreUI(mode, btn, originalLabel) {
+      var internalSections = document.getElementById('internal-sections');
+      var internalDivider = document.getElementById('internal-divider');
+      var disclaimer = document.getElementById('disclaimer');
+      var footer = document.getElementById('footer');
+      var otherBtn = mode === 'rebuttal' ? document.getElementById('btnFull') : document.getElementById('btnRebuttal');
+
+      if (mode === 'rebuttal') {
+        internalSections.style.display = '';
+        internalDivider.style.display = '';
+        disclaimer.style.display = '';
+        footer.style.display = '';
+      }
+      btn.disabled = false;
+      otherBtn.disabled = false;
+      isGenerating = false;
+    }
+
     function downloadPDF(mode) {
+      if (isGenerating) return;
+      isGenerating = true;
+
       var btn = mode === 'rebuttal' ? document.getElementById('btnRebuttal') : document.getElementById('btnFull');
+      var otherBtn = mode === 'rebuttal' ? document.getElementById('btnFull') : document.getElementById('btnRebuttal');
       var originalLabel = mode === 'rebuttal' ? 'Download Rebuttal Letter' : 'Download Full Working Copy';
+
       btn.disabled = true;
+      otherBtn.disabled = true;
       btn.innerHTML = spinnerIcon + ' Generating...';
 
       var caseNumber = '{{CASE_NUMBER}}';
@@ -552,18 +578,15 @@
       };
 
       html2pdf().set(opt).from(element).save().then(function() {
-        // Restore hidden sections
-        if (mode === 'rebuttal') {
-          internalSections.style.display = '';
-          internalDivider.style.display = '';
-          disclaimer.style.display = '';
-          footer.style.display = '';
-        }
-        btn.disabled = false;
+        restoreUI(mode, btn, originalLabel);
         btn.innerHTML = checkIcon + ' Downloaded!';
         setTimeout(function() {
           btn.innerHTML = downloadIcon + ' ' + originalLabel;
         }, 3000);
+      }).catch(function() {
+        restoreUI(mode, btn, originalLabel);
+        btn.innerHTML = downloadIcon + ' ' + originalLabel;
+        alert('PDF generation failed. Please try again.');
       });
     }
   </script>
