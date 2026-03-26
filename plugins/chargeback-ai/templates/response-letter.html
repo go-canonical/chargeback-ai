@@ -507,7 +507,7 @@
         <div class="footer-brand">Prepared by <span>Canonical Labs</span></div>
         <div class="footer-page">{{CASE_NUMBER}}</div>
       </div>
-      <div class="footer-bar"></div>
+      <div class="footer-bar" id="footer-bar"></div>
     </div>
   </div>
 
@@ -523,6 +523,7 @@
       var internalDivider = document.getElementById('internal-divider');
       var disclaimer = document.getElementById('disclaimer');
       var footer = document.getElementById('footer');
+      var footerBar = document.getElementById('footer-bar');
       var otherBtn = mode === 'rebuttal' ? document.getElementById('btnFull') : document.getElementById('btnRebuttal');
 
       if (mode === 'rebuttal') {
@@ -530,6 +531,7 @@
         internalDivider.style.display = '';
         disclaimer.style.display = '';
         footer.style.display = '';
+        footerBar.style.display = '';
       }
       btn.disabled = false;
       otherBtn.disabled = false;
@@ -556,12 +558,15 @@
       var footer = document.getElementById('footer');
       var element = document.getElementById('page');
 
+      var footerBar = document.getElementById('footer-bar');
+
       // For rebuttal-only: hide internal sections and footer before rendering
       if (mode === 'rebuttal') {
         internalSections.style.display = 'none';
         internalDivider.style.display = 'none';
         disclaimer.style.display = 'none';
         footer.style.display = 'none';
+        footerBar.style.display = 'none';
       }
 
       var filename = mode === 'rebuttal'

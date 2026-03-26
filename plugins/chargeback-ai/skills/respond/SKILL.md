@@ -150,7 +150,7 @@ Use a sanitized version of the case number for the filename (replace spaces/spec
 Open the HTML file in the user's default browser:
 - **macOS:** `open "{absolute_path_to_html}"`
 - **Linux:** `xdg-open "{absolute_path_to_html}"`
-- **Windows:** `start "{absolute_path_to_html}"`
+- **Windows:** `start "" "{absolute_path_to_html}"`
 
 Tell the user: "I've opened your dispute response in the browser. You'll see two download buttons at the top:
 
