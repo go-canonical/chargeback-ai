@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dispute Response — {{CASE_NUMBER}}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #1a1a2e;
+      font-size: 11pt;
+      line-height: 1.6;
+      background: #f3f4f6;
+    }
+
+    /* ===== Download bar ===== */
+    .download-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: #142263;
+      padding: 0;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+    }
+
+    .download-bar-inner {
+      max-width: 210mm;
+      margin: 0 auto;
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .download-bar-text {
+      font-size: 10pt;
+      color: #ffffff;
+      font-weight: 500;
+    }
+
+    .download-bar-text span {
+      color: #a5b4fc;
+    }
+
+    .download-buttons {
+      display: flex;
+      gap: 8px;
+    }
+
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 18px;
+      color: #ffffff;
+      font-size: 9pt;
+      font-weight: 600;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      letter-spacing: 0.01em;
+      transition: opacity 0.2s, transform 0.1s;
+      font-family: inherit;
+    }
+
+    .download-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    .download-btn:active {
+      transform: translateY(0);
+    }
+
+    .download-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .download-btn svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .btn-rebuttal {
+      background: linear-gradient(135deg, #ee87cb 0%, #b060ff 100%);
+    }
+
+    .btn-full {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .btn-full:hover {
+      background: rgba(255,255,255,0.18);
+    }
+
+    /* ===== Page container ===== */
+    .page-wrapper {
+      max-width: 210mm;
+      margin: 72px auto 40px;
+    }
+
+    .page {
+      width: 100%;
+      background: #ffffff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 8px 30px rgba(0,0,0,0.06);
+      border-radius: 2px;
+    }
+
+    /* ===== Gradient header bar ===== */
+    .header-bar {
+      height: 6px;
+      background: linear-gradient(90deg, #fff1be 0%, #ee87cb 50%, #b060ff 100%);
+    }
+
+    .header {
+      padding: 28px 48px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ee87cb 0%, #b060ff 100%);
+    }
+
+    .brand-name {
+      font-size: 16pt;
+      font-weight: 700;
+      color: #142263;
+      letter-spacing: -0.02em;
+    }
+
+    .doc-type {
+      font-size: 9pt;
+      font-weight: 600;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      text-align: right;
+      padding-top: 4px;
+    }
+
+    /* ===== Case details ===== */
+    .case-details {
+      margin: 28px 48px 0;
+      padding: 20px 24px;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+    }
+
+    .case-details-title {
+      font-size: 9pt;
+      font-weight: 600;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 12px;
+    }
+
+    .case-details-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 32px;
+    }
+
+    .case-detail {
+      display: flex;
+      gap: 8px;
+    }
+
+    .case-detail-label {
+      font-size: 9pt;
+      font-weight: 600;
+      color: #374151;
+      min-width: 120px;
+    }
+
+    .case-detail-value {
+      font-size: 9pt;
+      color: #1a1a2e;
+    }
+
+    /* ===== Content ===== */
+    .content {
+      padding: 28px 48px;
+    }
+
+    .section {
+      margin-bottom: 24px;
+    }
+
+    .section-header {
+      font-size: 11pt;
+      font-weight: 700;
+      color: #142263;
+      margin-bottom: 12px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid #b060ff;
+      display: inline-block;
+    }
+
+    /* ===== Rebuttal letter ===== */
+    .rebuttal-body {
+      font-size: 10.5pt;
+      line-height: 1.7;
+      color: #1a1a2e;
+    }
+
+    .rebuttal-body p {
+      margin-bottom: 12px;
+    }
+
+    .rebuttal-body strong {
+      font-weight: 600;
+    }
+
+    /* ===== Divider between submission content and internal notes ===== */
+    .internal-divider {
+      margin: 32px 48px 0;
+      padding: 12px 20px;
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 6px;
+      font-size: 8.5pt;
+      color: #92400e;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* ===== Evidence table ===== */
+    .evidence-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9.5pt;
+      margin-top: 8px;
+    }
+
+    .evidence-table thead {
+      background: linear-gradient(90deg, #f3e8ff 0%, #fce7f3 100%);
+    }
+
+    .evidence-table th {
+      padding: 10px 12px;
+      text-align: left;
+      font-weight: 600;
+      color: #142263;
+      font-size: 8.5pt;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      border-bottom: 2px solid #b060ff;
+    }
+
+    .evidence-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #e5e7eb;
+      vertical-align: top;
+    }
+
+    .evidence-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .status-have {
+      color: #059669;
+      font-weight: 600;
+    }
+
+    .status-missing {
+      color: #dc2626;
+      font-weight: 600;
+    }
+
+    .status-partial {
+      color: #d97706;
+      font-weight: 600;
+    }
+
+    /* ===== Organization guide ===== */
+    .org-guide {
+      font-size: 10pt;
+      line-height: 1.7;
+    }
+
+    .org-guide ol, .org-guide ul {
+      padding-left: 20px;
+      margin-bottom: 12px;
+    }
+
+    .org-guide li {
+      margin-bottom: 6px;
+    }
+
+    .org-guide h3 {
+      font-size: 10pt;
+      font-weight: 600;
+      color: #142263;
+      margin: 16px 0 8px;
+    }
+
+    /* ===== Submission notes ===== */
+    .submission-notes {
+      font-size: 10pt;
+      line-height: 1.7;
+    }
+
+    .submission-notes ul {
+      padding-left: 20px;
+      margin-bottom: 8px;
+    }
+
+    .submission-notes li {
+      margin-bottom: 4px;
+    }
+
+    .submission-notes strong {
+      color: #142263;
+    }
+
+    /* ===== Disclaimer ===== */
+    .disclaimer {
+      margin: 24px 48px 0;
+      padding: 16px 20px;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      font-size: 7.5pt;
+      color: #6b7280;
+      line-height: 1.5;
+    }
+
+    /* ===== Footer ===== */
+    .footer {
+      padding: 12px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #e5e7eb;
+      margin-top: 24px;
+    }
+
+    .footer-brand {
+      font-size: 8pt;
+      color: #9ca3af;
+      font-weight: 500;
+    }
+
+    .footer-brand span {
+      color: #7c3aed;
+      font-weight: 600;
+    }
+
+    .footer-page {
+      font-size: 8pt;
+      color: #9ca3af;
+    }
+
+    .footer-bar {
+      height: 4px;
+      background: linear-gradient(90deg, #fff1be 0%, #ee87cb 50%, #b060ff 100%);
+    }
+
+    /* ===== Print ===== */
+    @media print {
+      body { -webkit-print-color-adjust: exact; print-color-adjust: exact; background: #fff; }
+      .page-wrapper { margin: 0; }
+      .page { box-shadow: none; }
+      .download-bar { display: none !important; }
+      .internal-divider { display: none !important; }
+    }
+
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.2/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+  <!-- Download bar -->
+  <div class="download-bar" id="downloadBar">
+    <div class="download-bar-inner">
+      <div class="download-bar-text">Dispute Response — <span>{{CASE_NUMBER}}</span></div>
+      <div class="download-buttons">
+        <button class="download-btn btn-rebuttal" id="btnRebuttal" onclick="downloadPDF('rebuttal')">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
+          Download Rebuttal Letter
+        </button>
+        <button class="download-btn btn-full" id="btnFull" onclick="downloadPDF('full')">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
+          Download Full Working Copy
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-wrapper">
+    <div class="page" id="page">
+      <div class="header-bar"></div>
+
+      <div class="header">
+        <div class="brand">
+          <div class="brand-dot"></div>
+          <div class="brand-name">Canonical Labs</div>
+        </div>
+        <div class="doc-type">Dispute Response Package</div>
+      </div>
+
+      <div class="case-details">
+        <div class="case-details-title">Case Details</div>
+        <div class="case-details-grid">
+          <div class="case-detail">
+            <span class="case-detail-label">Case Number</span>
+            <span class="case-detail-value">{{CASE_NUMBER}}</span>
+          </div>
+          <div class="case-detail">
+            <span class="case-detail-label">Network</span>
+            <span class="case-detail-value">{{NETWORK}}</span>
+          </div>
+          <div class="case-detail">
+            <span class="case-detail-label">Transaction Date</span>
+            <span class="case-detail-value">{{TRANSACTION_DATE}}</span>
+          </div>
+          <div class="case-detail">
+            <span class="case-detail-label">Reason Code</span>
+            <span class="case-detail-value">{{REASON_CODE}}</span>
+          </div>
+          <div class="case-detail">
+            <span class="case-detail-label">Dispute Amount</span>
+            <span class="case-detail-value">{{AMOUNT}}</span>
+          </div>
+          <div class="case-detail">
+            <span class="case-detail-label">Date Prepared</span>
+            <span class="case-detail-value">{{DATE_PREPARED}}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- === REBUTTAL LETTER (submission-ready) === -->
+      <div class="content" id="rebuttal-section">
+        <div class="section">
+          <div class="section-header">Rebuttal Letter</div>
+          <div class="rebuttal-body">
+            {{REBUTTAL_LETTER}}
+          </div>
+        </div>
+      </div>
+
+      <!-- === INTERNAL WORKING SECTIONS (not for submission) === -->
+      <div class="internal-divider" id="internal-divider">
+        Internal working notes — not included in rebuttal letter PDF
+      </div>
+
+      <div class="content" id="internal-sections">
+        <div class="section">
+          <div class="section-header">Evidence Checklist</div>
+          {{EVIDENCE_TABLE}}
+        </div>
+
+        <div class="section">
+          <div class="section-header">Evidence Organization Guide</div>
+          <div class="org-guide">
+            {{ORGANIZATION_GUIDE}}
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-header">Submission Notes</div>
+          <div class="submission-notes">
+            {{SUBMISSION_NOTES}}
+          </div>
+        </div>
+      </div>
+
+      <div class="disclaimer" id="disclaimer">
+        <strong>Disclaimer:</strong> This dispute response was generated as a starting point and does not constitute legal, financial, or professional advice. Review all content carefully before submission — you are responsible for the accuracy of any information submitted to your payment processor. Chargeback rules and evidence requirements change frequently. Consult your acquirer or a chargeback management professional for case-specific guidance.
+      </div>
+
+      <div class="footer" id="footer">
+        <div class="footer-brand">Prepared by <span>Canonical Labs</span></div>
+        <div class="footer-page">{{CASE_NUMBER}}</div>
+      </div>
+      <div class="footer-bar"></div>
+    </div>
+  </div>
+
+  <script>
+    var downloadIcon = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:14px;height:14px"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>';
+    var spinnerIcon = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:14px;height:14px;animation:spin 1s linear infinite"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182" /></svg>';
+    var checkIcon = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width:14px;height:14px"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>';
+
+    function downloadPDF(mode) {
+      var btn = mode === 'rebuttal' ? document.getElementById('btnRebuttal') : document.getElementById('btnFull');
+      var originalLabel = mode === 'rebuttal' ? 'Download Rebuttal Letter' : 'Download Full Working Copy';
+      btn.disabled = true;
+      btn.innerHTML = spinnerIcon + ' Generating...';
+
+      var caseNumber = '{{CASE_NUMBER}}';
+      var safeName = caseNumber !== 'N/A' ? caseNumber.replace(/[^a-zA-Z0-9-_]/g, '-') : new Date().toISOString().slice(0, 10);
+      var internalSections = document.getElementById('internal-sections');
+      var internalDivider = document.getElementById('internal-divider');
+      var disclaimer = document.getElementById('disclaimer');
+      var footer = document.getElementById('footer');
+      var element = document.getElementById('page');
+
+      // For rebuttal-only: hide internal sections and footer before rendering
+      if (mode === 'rebuttal') {
+        internalSections.style.display = 'none';
+        internalDivider.style.display = 'none';
+        disclaimer.style.display = 'none';
+        footer.style.display = 'none';
+      }
+
+      var filename = mode === 'rebuttal'
+        ? 'rebuttal-letter-' + safeName + '.pdf'
+        : 'full-response-' + safeName + '.pdf';
+
+      var opt = {
+        margin: [12, 0, 12, 0],
+        filename: filename,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true, letterRendering: true },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+        pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+      };
+
+      html2pdf().set(opt).from(element).save().then(function() {
+        // Restore hidden sections
+        if (mode === 'rebuttal') {
+          internalSections.style.display = '';
+          internalDivider.style.display = '';
+          disclaimer.style.display = '';
+          footer.style.display = '';
+        }
+        btn.disabled = false;
+        btn.innerHTML = checkIcon + ' Downloaded!';
+        setTimeout(function() {
+          btn.innerHTML = downloadIcon + ' ' + originalLabel;
+        }, 3000);
+      });
+    }
+  </script>
+</body>
+</html>
